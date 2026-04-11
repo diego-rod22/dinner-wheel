@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dinner Night Wheel</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0d0d0d;
+  color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem 3rem;
+  gap: 1.25rem;
+}
+
+h1 { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; text-align: center; }
+.sub { font-size: 12px; color: #888; text-align: center; margin-top: 3px; }
+
+.filter-section { width: 100%; max-width: 420px; }
+.filter-label { font-size: 10px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+.filter-row { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.filter-btn {
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #2a2a2a;
+  background: #161616;
+  color: #666;
+  cursor: pointer;
+  transition: all .15s;
+  user-select: none;
+}
+.filter-btn:hover { border-color: #444; color: #aaa; }
+.filter-btn.active { background: #1a2e1a; color: #72d072; border-color: #3d7a3d; }
+.filter-btn:focus-visible { outline: 2px solid #72d072; outline-offset: 2px; }
+
+.filter-actions { display: flex; gap: 8px; margin-top: 8px; }
+.filter-action-btn { font-size: 11px; color: #444; background: none; border: none; cursor: pointer; text-decoration: underline; padding: 0; }
+.filter-action-btn:hover { color: #777; }
+
+.count { font-size: 12px; color: #444; text-align: center; }
+
+.wheel-wrap { position: relative; width: 340px; height: 340px; flex-shrink: 0; }
+.pointer {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 24px solid #e8e8e8;
+  z-index: 10;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.7));
+}
+canvas { display: block; border-radius: 50%; }
+
+.spin-btn {
+  padding: 12px 44px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 1px solid #2a2a2a;
+  background: #161616;
+  color: #f0f0f0;
+  cursor: pointer;
+  letter-spacing: .04em;
+  transition: all .15s;
+}
+.spin-btn:hover { background: #1e1e1e; border-color: #444; }
+.spin-btn:active { transform: scale(.97); }
+.spin-btn:disabled { opacity: .35; cursor: not-allowed; transform: none; }
+.spin-btn:focus-visible { outline: 2px solid #72d072; outline-offset: 2px; }
+
+.result-box {
+  width: 100%;
+  max-width: 380px;
+  background: #111;
+  border: 1px solid #1e1e1e;
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  min-height: 74px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.result-name { font-size: 18px; font-weight: 600; color: #f0f0f0; }
+.result-meta { font-size: 13px; color: #777; }
+.result-note { font-size: 11px; color: #72d072; margin-top: 2px; }
+.result-placeholder { font-size: 14px; color: #555; }
+
+.skip-wrap { width: 100%; max-width: 380px; }
+.skip-wrap label { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #444; cursor: pointer; }
+.skip-wrap input[type="checkbox"] { accent-color: #72d072; cursor: pointer; }
+
+.history-wrap { width: 100%; max-width: 380px; }
+.history-label { font-size: 10px; font-weight: 600; color: #333; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; }
+.history-list { display: flex; flex-direction: column; gap: 2px; }
+.history-item { font-size: 12px; color: #3a3a3a; display: flex; gap: 5px; }
+.history-num { color: #2a2a2a; flex-shrink: 0; }
+
+.edit-wrap { width: 100%; max-width: 380px; }
+.edit-toggle { font-size: 13px; color: #444; background: none; border: none; cursor: pointer; text-decoration: underline; padding: 0; }
+.edit-toggle:hover { color: #777; }
+.edit-toggle:focus-visible { outline: 2px solid #72d072; outline-offset: 2px; }
+
+.edit-panel { display: none; flex-direction: column; gap: 8px; margin-top: 12px; }
+.edit-panel.open { display: flex; }
+
+.rest-list { max-height: 300px; overflow-y: auto; border: 1px solid #1e1e1e; border-radius: 10px; }
+.region { padding: 8px 12px 6px; }
+.region + .region { border-top: 1px solid #1a1a1a; }
+.region-label { font-size: 10px; font-weight: 600; color: #383838; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; }
+
+.rest-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #bbb; padding: 2px 0; cursor: pointer; }
+.rest-item input[type="checkbox"] { width: 13px; height: 13px; accent-color: #72d072; cursor: pointer; flex-shrink: 0; }
+.rest-item input[type="checkbox"]:focus-visible { outline: 2px solid #72d072; outline-offset: 1px; }
+
+.peanut-tag { margin-left: auto; font-size: 10px; color: #a07030; flex-shrink: 0; }
+
+.delete-btn {
+  margin-left: auto;
+  font-size: 11px;
+  color: #3a3a3a;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.delete-btn:hover { color: #c04820; }
+
+.add-row { display: flex; gap: 6px; }
+.add-row input[type="text"] { flex: 1; font-size: 13px; padding: 7px 10px; border: 1px solid #222; border-radius: 8px; background: #111; color: #f0f0f0; }
+.add-row input[type="text"]::placeholder { color: #333; }
+.add-row select { font-size: 12px; padding: 7px 6px; border: 1px solid #222; border-radius: 8px; background: #111; color: #888; cursor: pointer; max-width: 110px; }
+.add-row button { padding: 7px 16px; font-size: 13px; border: 1px solid #222; border-radius: 8px; background: #161616; color: #bbb; cursor: pointer; white-space: nowrap; }
+.add-row button:hover { border-color: #3a3a3a; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<h1>Dinner Night Wheel</h1>
+<p class="sub">Northern Virginia · no peanut oil (except Chick-fil-A)</p>
+
+<div class="filter-section">
+  <div class="filter-label">Filter by area — tap to toggle multiple</div>
+  <div class="filter-row" id="filterRow"></div>
+  <div class="filter-actions">
+    <button class="filter-action-btn" onclick="selectAll()">select all</button>
+    <button class="filter-action-btn" onclick="clearAll()">clear all</button>
+  </div>
+</div>
+
+<p class="count" id="countBadge"></p>
+
+<div class="wheel-wrap">
+  <div class="pointer"></div>
+  <canvas id="canvas" width="340" height="340"></canvas>
+</div>
+
+<button class="spin-btn" id="spinBtn" onclick="spin()">Spin</button>
+
+<div class="result-box" id="resultBox" aria-live="polite" aria-atomic="true">
+  <p class="result-placeholder">Select areas above, then spin</p>
+</div>
+
+<div class="skip-wrap">
+  <label>
+    <input type="checkbox" id="skipLast" />
+    Skip last pick on next spin
+  </label>
+</div>
+
+<div class="history-wrap" id="historyWrap" style="display:none">
+  <div class="history-label">Recent picks</div>
+  <div class="history-list" id="historyList"></div>
+</div>
+
+<div class="edit-wrap">
+  <button class="edit-toggle" onclick="toggleEdit()">customize restaurants</button>
+  <div class="edit-panel" id="editPanel">
+    <div class="rest-list" id="restList"></div>
+    <div class="add-row">
+      <input type="text" id="addInput" placeholder="Restaurant name…" />
+      <select id="addArea"><!-- populated by JS --></select>
+      <button onclick="addRestaurant()">Add</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const COLORS = [
+  '#7060CC','#1A9068','#C04820','#2870B0','#A86510',
+  '#B83870','#4A7A10','#B83030','#3D3490','#0C5438',
+  '#7A2810','#104E88','#6A3C08','#7A2040','#245010',
+  '#822018','#2A9878','#C08008','#6858C4','#158060',
+  '#B84018','#1E60A0','#986010','#A83068','#407010',
+  '#A82828','#347090','#B87408','#5048BC','#0A4C30',
+  '#703010','#0C4480','#5E3404','#6C1C38','#1E4808',
+  '#741818','#208898','#A87008','#604CB4','#116850'
+];
+
+const ALL = [
+  // — Alexandria —
+  {name:'Blackwall Hitch',          meta:'American / Seafood',           area:'Alexandria',    note:'',                         active:true},
+  {name:"Murphy's Irish Pub",       meta:'Irish Pub',                    area:'Alexandria',    note:'',                         active:true},
+  {name:'Whole Foods',              meta:'Grocery / Hot Bar',            area:'Alexandria',    note:'Build-your-own night',     active:true},
+  {name:"Trader Joe's",             meta:'Grocery / Ready Meals',        area:'Alexandria',    note:'Frozen meal night',        active:true},
+  {name:'Lost Dog Cafe',            meta:'Pizza / Sandwiches',           area:'Alexandria',    note:'Dog-friendly. Rescues.',   active:true},
+  {name:'Chili Wok',                meta:'Chinese / Sichuan ⭐ 4.7',     area:'Alexandria',    note:'',                         active:true},
+  {name:'Hunan Cafe',               meta:'Chinese (Halal) ⭐ 4.8',       area:'Alexandria',    note:'',                         active:true},
+  {name:'Landini Brothers',         meta:'Italian ⭐ 4.2',               area:'Alexandria',    note:'Tuscan landmark, est. 1976', active:true},
+  {name:'Il Porto Ristorante',      meta:'Italian / Seafood ⭐ 4.2',     area:'Alexandria',    note:'Hand-rolled pasta, est. 1973', active:true},
+  {name:'Osteria Marzano',          meta:'Italian ⭐ 4.5',               area:'Alexandria',    note:'Scratch-made pasta & brick oven', active:true},
+  // — Herndon —
+  {name:'Maharani Palace',          meta:'Indian ⭐ 4.8',                 area:'Herndon',       note:'',                         active:true},
+  {name:'Zeffirelli',               meta:'Italian',                      area:'Herndon',       note:'',                         active:true},
+  {name:'La Bonne Vie',             meta:'French ⭐ 4.7',                 area:'Herndon',       note:'',                         active:true},
+  {name:"Stone's Cove Kitbar",      meta:'American',                     area:'Herndon',       note:'',                         active:true},
+  {name:"Amphora's Diner",          meta:'Greek / American',             area:'Herndon',       note:'',                         active:true},
+  {name:'Peter Chang Herndon',      meta:'Chinese / Sichuan ⭐ 4.2',     area:'Herndon',       note:'',                         active:true},
+  {name:'Yu Noodles Herndon',       meta:'Chinese / Taiwanese ⭐ 4.3',   area:'Herndon',       note:'',                         active:true},
+  // — Reston —
+  {name:'Lantern House',            meta:'Vietnamese ⭐ 4.8',             area:'Reston',        note:'',                         active:true},
+  {name:'Pisco y Nazca',            meta:'Peruvian ⭐ 4.9',               area:'Reston',        note:'',                         active:true},
+  {name:"Red's Table",              meta:'American',                     area:'Reston',        note:'',                         active:true},
+  {name:'Heirloom',                 meta:'Speakeasy American',           area:'Reston',        note:'',                         active:true},
+  {name:'Mandarin Reston',          meta:'Chinese ⭐ 4.0',                area:'Reston',        note:'',                         active:true},
+  {name:"Gregorio's Trattoria",     meta:'Italian ⭐ 4.2',               area:'Reston',        note:'Family-owned neighborhood trattoria', active:true},
+  {name:"Davio's N. Italian",       meta:'Italian / Steakhouse ⭐ 3.8',  area:'Reston',        note:'Upscale Northern Italian steakhouse', active:true},
+  // — Falls Church —
+  {name:'Seoul Prime',              meta:'Korean Steakhouse ⭐ 4.9',     area:'Falls Church',  note:'',                         active:true},
+  {name:"Chasin' Tails",            meta:'Cajun Seafood',                area:'Falls Church',  note:'',                         active:true},
+  {name:'Sweetwater Tavern FC',     meta:'American Brewery',             area:'Falls Church',  note:'',                         active:true},
+  {name:'The Falls',                meta:'American',                     area:'Falls Church',  note:'',                         active:true},
+  {name:'Chick-fil-A',              meta:'Fast Food Chicken',            area:'Falls Church',  note:'Peanut oil — approved',    active:true},
+  {name:'Honest Grill',             meta:'Korean BBQ',                   area:'Falls Church',  note:'',                         active:true},
+  {name:'Taco Bamba',               meta:'Mexican Fusion',               area:'Falls Church',  note:'',                         active:true},
+  {name:'Peking Gourmet Inn',       meta:'Chinese / Peking Duck ⭐ 4.2', area:'Falls Church',  note:'Legendary duck spot',      active:true},
+  {name:'RH Bistro',                meta:'Chinese / Sichuan ⭐ 4.4',     area:'Falls Church',  note:'',                         active:true},
+  {name:'Dolan Uyghur',             meta:'Uyghur / Silk Road ⭐ 4.8',    area:'Falls Church',  note:'Unique — must try',        active:true},
+  {name:'Thompson Italian',         meta:'Italian ⭐ 4.1',               area:'Falls Church',  note:'Fresh pasta, husband-and-wife team', active:true},
+  {name:'Sfizi Cafe',               meta:'Italian ⭐ 4.2',               area:'Falls Church',  note:'Cozy neighborhood trattoria', active:true},
+  {name:"Pistone's Italian Inn",    meta:'Italian ⭐ 4.0',               area:'Falls Church',  note:'Long-standing family Italian inn', active:true},
+  // — Fairfax —
+  {name:"Artie's",                  meta:'American ⭐ 4.6',               area:'Fairfax',       note:'',                         active:true},
+  {name:'Ariake Japanese',          meta:'Sushi / Japanese',             area:'Fairfax',       note:'',                         active:true},
+  {name:'Lost Dog Dunn Loring',     meta:'Pizza / Sandwiches',           area:'Fairfax',       note:'Dog-friendly. Rescues.',   active:true},
+  {name:'Mama Chang',               meta:'Chinese / Sichuan ⭐ 4.3',     area:'Fairfax',       note:'',                         active:true},
+  {name:'Ugly Dumpling',            meta:'Chinese / Dumplings ⭐ 4.7',   area:'Fairfax',       note:'Fair Oaks Mall',           active:true},
+  {name:'IPanda Dumplings',         meta:'Chinese / Dumplings ⭐ 4.8',   area:'Fairfax',       note:'',                         active:true},
+  // — Oakton —
+  {name:'Old Peking',               meta:'Chinese ⭐ 4.0',                area:'Oakton',        note:'Neighborhood gem',         active:true},
+  {name:"Hamrock's",                meta:'American / GF-friendly',       area:'Oakton',        note:'',                         active:true},
+  // — Tysons —
+  {name:'Founding Farmers',         meta:'American ⭐ 4.6',               area:'Tysons',        note:'',                         active:true},
+  {name:'Wildfire',                 meta:'Steakhouse',                   area:'Tysons',        note:'',                         active:true},
+  {name:'Coastal Flats',            meta:'Seafood / American',           area:'Tysons',        note:'',                         active:true},
+  {name:'Wren Tysons',              meta:'New American',                 area:'Tysons',        note:'',                         active:true},
+  {name:'Circa at The Boro',        meta:'American',                     area:'Tysons',        note:'',                         active:true},
+  {name:'Copper Canyon Grill',      meta:'Southwestern American',        area:'Tysons',        note:'',                         active:true},
+  {name:'J&G Steakhouse',           meta:'Upscale Steakhouse',           area:'Tysons',        note:'',                         active:true},
+  // — Arlington —
+  {name:'Carbonara',                meta:'Italian ⭐ 4.8',                area:'Arlington',     note:'',                         active:true},
+  {name:'AMBAR Clarendon',          meta:'Balkan Tapas ⭐ 4.6',           area:'Arlington',     note:'',                         active:true},
+  {name:'Green Pig Bistro',         meta:'American Bistro',              area:'Arlington',     note:'',                         active:true},
+  {name:'Quarterdeck',              meta:'Blue Crabs / Seafood',         area:'Arlington',     note:'',                         active:true},
+  {name:'Lost Dog Arlington',       meta:'Pizza / Sandwiches',           area:'Arlington',     note:'Dog-friendly. Rescues.',   active:true},
+  {name:'Roaming Rooster',          meta:'Nashville Hot Chicken',        area:'Arlington',     note:'',                         active:true},
+  {name:'1983 Chinese Cuisine',     meta:'Chinese / Dim Sum ⭐ 4.5',     area:'Arlington',     note:'',                         active:true},
+  {name:'Peter Chang Arlington',    meta:'Chinese / Sichuan ⭐ 4.2',     area:'Arlington',     note:'',                         active:true},
+  {name:'Pines of Florence',        meta:'Italian ⭐ 4.9',               area:'Arlington',     note:'35+ years, neighborhood gem', active:true},
+  {name:'Sfoglina',                 meta:'Italian / Pasta',              area:'Arlington',     note:'Handmade pasta, Fabio Trabocchi', active:true},
+  // — Vienna —
+  {name:'Evelyn Rose',              meta:'New American ⭐ 4.7',           area:'Vienna',        note:'',                         active:true},
+  {name:'Clarity',                  meta:'French-American',              area:'Vienna',        note:'',                         active:true},
+  {name:'Maple Ave Restaurant',     meta:'American ⭐ 4.7',               area:'Vienna',        note:'',                         active:true},
+  {name:'The Maple Room',           meta:'American Lounge',              area:'Vienna',        note:'',                         active:true},
+  {name:'Nostos',                   meta:'Greek ⭐ 4.6',                  area:'Vienna',        note:'',                         active:true},
+  {name:"Bazin's on Church",        meta:'New American ⭐ 4.7',           area:'Vienna',        note:'',                         active:true},
+  {name:'Chef Tan',                 meta:'Chinese / Hunan ⭐ 4.8',        area:'Vienna',        note:'',                         active:true},
+  {name:"Bing Bing's Dumpling",     meta:'Chinese / Dumplings ⭐ 4.9',   area:'Vienna',        note:'',                         active:true},
+  {name:"Chan's Kitchen",           meta:'Chinese ⭐ 4.7',                area:'Vienna',        note:'',                         active:true},
+  {name:"Roberto's Ristorante",     meta:'Italian ⭐ 4.5',               area:'Vienna',        note:'Upscale; tableside pasta service', active:true},
+  // — McLean —
+  {name:'Town Kitchen & Bar',       meta:'New American',                 area:'McLean',        note:'',                         active:true},
+  {name:'Neutral Ground',           meta:'New Orleans Inspired',         area:'McLean',        note:'',                         active:true},
+  {name:'Lost Dog McLean',          meta:'Pizza / Sandwiches',           area:'McLean',        note:'Dog-friendly. Rescues.',   active:true},
+  {name:'Yu Noodles McLean',        meta:'Chinese / Taiwanese ⭐ 4.5',   area:'McLean',        note:'',                         active:true},
+  {name:'Pulcinella Restaurant',    meta:'Italian ⭐ 4.1',               area:'McLean',        note:'Classic Italian & Neapolitan pizza', active:true},
+  {name:'Dal Grano',                meta:'Italian ⭐ 4.4',               area:'McLean',        note:'Wood-oven pizza, Mediterranean', active:true},
+  // — Annandale —
+  {name:'1943 Classic',             meta:'Korean ⭐ 4.8',                 area:'Annandale',     note:'',                         active:true},
+  {name:'OiSO Korean',              meta:'Korean Street Food ⭐ 4.9',    area:'Annandale',     note:'',                         active:true},
+  {name:'Pike Kitchen',             meta:'Korean / Japanese ⭐ 4.9',     area:'Annandale',     note:'',                         active:true},
+  {name:'Garden Social',            meta:'Asian Fusion',                 area:'Annandale',     note:'',                         active:true},
+  {name:'Pom Pom Chicken',          meta:'Korean Fried Chicken',         area:'Annandale',     note:'',                         active:true},
+  {name:'A&J Restaurant',           meta:'Taiwanese / Chinese ⭐ 4.4',   area:'Annandale',     note:'Legendary cheap eats',     active:true},
+  {name:"Duck Chang's",             meta:'Chinese / Peking Duck ⭐ 4.4', area:'Annandale',     note:'Est. 1975',                active:true},
+  {name:'Szechuan Star',            meta:'Chinese ⭐ 4.3',               area:'Annandale',     note:'',                         active:true},
+  // — Springfield —
+  {name:"Mike's American",          meta:'American ⭐ 4.6',               area:'Springfield',   note:'',                         active:true},
+  {name:'Yard House',               meta:'American / Sports Bar',        area:'Springfield',   note:'',                         active:true},
+  {name:'Firebirds Wood Fired',     meta:'Steakhouse',                   area:'Springfield',   note:'',                         active:true},
+  {name:'The Farmhouse Tuscan',     meta:'Italian',                      area:'Springfield',   note:'',                         active:true},
+  {name:'Hot Peppercorn',           meta:'Chinese ⭐ 4.3',               area:'Springfield',   note:'',                         active:true},
+  {name:'Hunan Taste',              meta:'Chinese ⭐ 4.4',               area:'Springfield',   note:'',                         active:true},
+  // — Chantilly —
+  {name:'Izakaya Nana',             meta:'Japanese / Sushi ⭐ 4.7',      area:'Chantilly',     note:'',                         active:true},
+  {name:'Lazy Dog',                 meta:'American ⭐ 4.6',               area:'Chantilly',     note:'',                         active:true},
+  {name:'Sedona Taphouse',          meta:'American / Craft Beer',        area:'Chantilly',     note:'',                         active:true},
+  {name:'Bourbon Blvd Steak',       meta:'Steakhouse',                   area:'Chantilly',     note:'',                         active:true},
+  {name:"Cheng's Asian House",      meta:'Chinese ⭐ 4.4',               area:'Chantilly',     note:'',                         active:true},
+  {name:'Yu Noodles Chantilly',     meta:'Chinese / Dumplings ⭐ 4.7',   area:'Chantilly',     note:'',                         active:true},
+  // — Centreville —
+  {name:'Sweetwater Centreville',   meta:'American Brewery',             area:'Centreville',   note:'',                         active:true},
+  {name:'Ciao Osteria',             meta:'Italian ⭐ 4.5',                area:'Centreville',   note:'',                         active:true},
+  {name:'Don Luis',                 meta:'Mexican ⭐ 4.8',                area:'Centreville',   note:'',                         active:true},
+  {name:'Hikari',                   meta:'Japanese / Poke',              area:'Centreville',   note:'',                         active:true},
+  {name:'Hao Ru',                   meta:'Korean-Chinese ⭐ 4.4',        area:'Centreville',   note:'',                         active:true},
+  {name:'Hao by Haoru',             meta:'Korean-Chinese ⭐ 4.7',        area:'Centreville',   note:'AYCE option',              active:true},
+  // — Ashburn —
+  {name:'The Lost Fox',             meta:'American ⭐ 4.5',               area:'Ashburn',       note:'',                         active:true},
+  {name:'Fountain Grill',           meta:'American ⭐ 4.9',               area:'Ashburn',       note:'',                         active:true},
+  {name:"Clyde's Willow Creek",     meta:'American ⭐ 4.5',               area:'Ashburn',       note:'',                         active:true},
+  {name:'Chin-Chin Cafe',           meta:'Chinese / Thai / Sushi ⭐ 4.5',area:'Ashburn',       note:'',                         active:true},
+  {name:"Yen's Kitchen",            meta:'Chinese / Sushi ⭐ 4.4',       area:'Ashburn',       note:'',                         active:true},
+  {name:'Pazzo Pomodoro',           meta:'Italian ⭐ 4.3',               area:'Ashburn',       note:'Award-winning authentic Italian', active:true},
+  // — Leesburg —
+  {name:'Tuscarora Mill',           meta:'American ⭐ 4.6',               area:'Leesburg',      note:'',                         active:true},
+  {name:'Lightfoot Restaurant',     meta:'New American ⭐ 4.5',           area:'Leesburg',      note:'',                         active:true},
+  {name:'Bangkok 54',               meta:'Thai',                         area:'Leesburg',      note:'',                         active:true},
+  {name:'Il Cappero',               meta:'Italian',                      area:'Leesburg',      note:'Authentic Italian cuisine', active:true},
+];
+
+const AREAS = ['Alexandria','Herndon','Reston','Falls Church','Fairfax','Oakton','Tysons','Arlington','Vienna','McLean','Annandale','Springfield','Chantilly','Centreville','Ashburn','Leesburg'];
+let activeAreas = new Set(AREAS);
+let restaurants = ALL.map(r => Object.assign({}, r));
+let spinning = false, currentAngle = 0;
+let spinHistory = [];
+
+// — XSS escape helper —
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// — localStorage —
+function saveState() {
+  try {
+    localStorage.setItem('dw_areas', JSON.stringify([...activeAreas]));
+    localStorage.setItem('dw_custom', JSON.stringify(restaurants.filter(r => r.isCustom)));
+  } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const areas = localStorage.getItem('dw_areas');
+    if (areas) activeAreas = new Set(JSON.parse(areas));
+    const custom = localStorage.getItem('dw_custom');
+    if (custom) JSON.parse(custom).forEach(r => restaurants.push(r));
+  } catch(e) {}
+  syncActive();
+}
+
+// — Filters —
+function buildFilters() {
+  document.getElementById('filterRow').innerHTML = AREAS.map(a =>
+    `<button class="filter-btn ${activeAreas.has(a) ? 'active' : ''}" onclick="toggleArea('${esc(a)}')">${esc(a)}</button>`
+  ).join('');
+}
+
+function toggleArea(a) {
+  if (activeAreas.has(a)) activeAreas.delete(a); else activeAreas.add(a);
+  syncActive(); buildFilters(); drawWheel(currentAngle); updateCount(); saveState();
+  if (document.getElementById('editPanel').classList.contains('open')) renderList();
+}
+
+function selectAll() { activeAreas = new Set(AREAS); syncActive(); buildFilters(); drawWheel(currentAngle); updateCount(); saveState(); }
+function clearAll()  { activeAreas = new Set();      syncActive(); buildFilters(); drawWheel(currentAngle); updateCount(); saveState(); }
+
+// Sync area filters → active flag; custom restaurants in known areas follow the filter,
+// custom "Other" area restaurants are always considered active.
+function syncActive() {
+  restaurants.forEach(r => {
+    if (AREAS.includes(r.area)) {
+      r.active = activeAreas.has(r.area);
+    } else {
+      r.active = true; // custom "Other" area always on
+    }
+  });
+}
+
+function active() { return restaurants.filter(r => r.active); }
+
+function updateCount() {
+  const n = active().length;
+  document.getElementById('countBadge').textContent = n + ' spot' + (n !== 1 ? 's' : '') + ' on the wheel';
+}
+
+// — Wheel drawing —
+function drawWheel(angle, overrideList) {
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const cx = 170, cy = 170, r = 165;
+  const list = overrideList || active();
+  ctx.clearRect(0, 0, 340, 340);
+  if (!list.length) {
+    ctx.fillStyle = '#141414';
+    ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.fill();
+    ctx.fillStyle = '#2a2a2a'; ctx.font = '13px sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('No areas selected', cx, cy);
+    return;
+  }
+  const arc = (2 * Math.PI) / list.length;
+  list.forEach((item, i) => {
+    const start = angle + i * arc;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, r, start, start + arc); ctx.closePath();
+    ctx.fillStyle = COLORS[i % COLORS.length]; ctx.fill();
+    ctx.strokeStyle = 'rgba(0,0,0,.5)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(start + arc / 2); ctx.textAlign = 'right';
+    const n = list.length;
+    const fs = n > 55 ? 6 : n > 42 ? 7 : n > 30 ? 8 : n > 20 ? 9 : n > 13 ? 10 : 12;
+    ctx.font = `600 ${fs}px -apple-system,sans-serif`;
+    ctx.fillStyle = 'rgba(255,255,255,.9)'; ctx.shadowColor = 'rgba(0,0,0,.8)'; ctx.shadowBlur = 2;
+    const ml = n > 55 ? 7 : n > 42 ? 9 : n > 30 ? 11 : n > 20 ? 13 : 16;
+    const lbl = item.name.length > ml ? item.name.slice(0, ml - 1) + '…' : item.name;
+    ctx.fillText(lbl, r - 6, fs / 3); ctx.restore();
+  });
+  ctx.beginPath(); ctx.arc(cx, cy, 16, 0, 2 * Math.PI);
+  ctx.fillStyle = '#0d0d0d'; ctx.fill(); ctx.strokeStyle = '#2a2a2a'; ctx.lineWidth = 1; ctx.stroke();
+}
+
+// — Spin —
+function spin() {
+  const allActive = active();
+  const skipLast = document.getElementById('skipLast').checked;
+  const list = (skipLast && spinHistory.length > 0 && allActive.length > 1)
+    ? allActive.filter(r => r.name !== spinHistory[0].name)
+    : allActive;
+
+  if (!list.length || spinning) return;
+  spinning = true;
+  document.getElementById('spinBtn').disabled = true;
+  document.getElementById('resultBox').innerHTML = '<p class="result-placeholder">Spinning…</p>';
+
+  const arc = (2 * Math.PI) / list.length;
+  const targetIdx = Math.floor(Math.random() * list.length);
+  const extra = (7 + Math.random() * 5) * 2 * Math.PI;
+  const targetAngle = extra + (2 * Math.PI - currentAngle - targetIdx * arc - arc / 2 - Math.PI / 2);
+  const duration = 4200 + Math.random() * 1600;
+  const t0 = performance.now(), a0 = currentAngle;
+
+  function ease(t) { return 1 - Math.pow(1 - t, 4); }
+
+  (function frame(now) {
+    const t = Math.min((now - t0) / duration, 1);
+    drawWheel(a0 + targetAngle * ease(t), list);
+    if (t < 1) { requestAnimationFrame(frame); return; }
+    currentAngle = (a0 + targetAngle) % (2 * Math.PI);
+    spinning = false;
+    document.getElementById('spinBtn').disabled = false;
+    drawWheel(currentAngle); // restore full wheel after spin
+    const w = list[targetIdx];
+    document.getElementById('resultBox').innerHTML =
+      `<p class="result-name">${esc(w.name)}</p>` +
+      `<p class="result-meta">${esc(w.meta)} &middot; ${esc(w.area)}</p>` +
+      (w.note ? `<p class="result-note">${esc(w.note)}</p>` : '');
+    spinHistory.unshift({ name: w.name, area: w.area });
+    if (spinHistory.length > 5) spinHistory.pop();
+    renderHistory();
+  })(t0);
+}
+
+// — History —
+function renderHistory() {
+  const wrap = document.getElementById('historyWrap');
+  const listEl = document.getElementById('historyList');
+  if (!spinHistory.length) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+  listEl.innerHTML = spinHistory.map((h, i) =>
+    `<div class="history-item"><span class="history-num">${i + 1}.</span>${esc(h.name)}<span style="color:#2e2e2e"> &middot; ${esc(h.area)}</span></div>`
+  ).join('');
+}
+
+// — Edit panel —
+function toggleEdit() {
+  const p = document.getElementById('editPanel');
+  p.classList.toggle('open');
+  if (p.classList.contains('open')) renderList();
+}
+
+function renderList() {
+  const areas = [...new Set(restaurants.map(r => r.area))];
+  document.getElementById('restList').innerHTML = areas.map(area => {
+    const items = restaurants.map((r, i) => ({ ...r, idx: i })).filter(r => r.area === area);
+    return `<div class="region"><div class="region-label">${esc(area)}</div>${
+      items.map(r => `<label class="rest-item">
+        <input type="checkbox" ${r.active ? 'checked' : ''} onchange="toggleOne(${r.idx},this.checked)" />
+        ${esc(r.name)}${r.note && r.note.includes('Peanut') ? '<span class="peanut-tag">peanut oil</span>' : ''}
+        ${r.isCustom ? `<button class="delete-btn" onclick="event.preventDefault();deleteRestaurant(${r.idx})" title="Remove">✕</button>` : ''}
+      </label>`).join('')
+    }</div>`;
+  }).join('');
+}
+
+function toggleOne(i, v) {
+  restaurants[i].active = v;
+  drawWheel(currentAngle);
+  updateCount();
+}
+
+function deleteRestaurant(i) {
+  restaurants.splice(i, 1);
+  renderList();
+  drawWheel(currentAngle);
+  updateCount();
+  saveState();
+}
+
+function populateAreaSelect() {
+  const sel = document.getElementById('addArea');
+  sel.innerHTML = '<option value="">Area…</option>' +
+    AREAS.map(a => `<option value="${esc(a)}">${esc(a)}</option>`).join('') +
+    '<option value="Other">Other</option>';
+}
+
+function addRestaurant() {
+  const inp = document.getElementById('addInput');
+  const sel = document.getElementById('addArea');
+  const val = inp.value.trim();
+  if (!val) return;
+  const area = sel.value || 'Other';
+  restaurants.push({ name: val, meta: 'Custom', area, note: '', active: true, isCustom: true });
+  inp.value = '';
+  if (document.getElementById('editPanel').classList.contains('open')) renderList();
+  drawWheel(currentAngle);
+  updateCount();
+  saveState();
+}
+
+// — Init —
+loadState();
+buildFilters();
+populateAreaSelect();
+drawWheel(currentAngle);
+updateCount();
+</script>
+</body>
+</html>
