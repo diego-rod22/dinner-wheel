@@ -225,6 +225,9 @@ const ALL = [
   {name:'Landini Brothers',         meta:'Italian ⭐ 4.2',               area:'Alexandria',    note:'Tuscan landmark, est. 1976', active:true},
   {name:'Il Porto Ristorante',      meta:'Italian / Seafood ⭐ 4.2',     area:'Alexandria',    note:'Hand-rolled pasta, est. 1973', active:true},
   {name:'Osteria Marzano',          meta:'Italian ⭐ 4.5',               area:'Alexandria',    note:'Scratch-made pasta & brick oven', active:true},
+  {name:'Hard Times Cafe',           meta:'American / Chili',             area:'Alexandria',    note:'Budget-friendly. Classic chili joint', active:true},
+  {name:'Taqueria El Poblano',       meta:'Mexican Tacos ⭐ 4.5',         area:'Alexandria',    note:'Budget-friendly. Authentic street tacos', active:true},
+  {name:'Pho Xe Lua',               meta:'Vietnamese Pho ⭐ 4.4',        area:'Alexandria',    note:'Budget-friendly',                  active:true},
   // — Herndon —
   {name:'Maharani Palace',          meta:'Indian ⭐ 4.8',                 area:'Herndon',       note:'',                         active:true},
   {name:'Zeffirelli',               meta:'Italian',                      area:'Herndon',       note:'',                         active:true},
@@ -233,6 +236,8 @@ const ALL = [
   {name:"Amphora's Diner",          meta:'Greek / American',             area:'Herndon',       note:'',                         active:true},
   {name:'Peter Chang Herndon',      meta:'Chinese / Sichuan ⭐ 4.2',     area:'Herndon',       note:'',                         active:true},
   {name:'Yu Noodles Herndon',       meta:'Chinese / Taiwanese ⭐ 4.3',   area:'Herndon',       note:'',                         active:true},
+  {name:"Anita's Mexican",          meta:'Mexican ⭐ 4.3',               area:'Herndon',       note:'Budget-friendly. Local NoVA chain', active:true},
+  {name:'Moby Dick Kabob',          meta:'Persian / Kabob ⭐ 4.4',       area:'Herndon',       note:'Budget-friendly',                  active:true},
   // — Reston —
   {name:'Lantern House',            meta:'Vietnamese ⭐ 4.8',             area:'Reston',        note:'',                         active:true},
   {name:'Pisco y Nazca',            meta:'Peruvian ⭐ 4.9',               area:'Reston',        note:'',                         active:true},
@@ -241,6 +246,7 @@ const ALL = [
   {name:'Mandarin Reston',          meta:'Chinese ⭐ 4.0',                area:'Reston',        note:'',                         active:true},
   {name:"Gregorio's Trattoria",     meta:'Italian ⭐ 4.2',               area:'Reston',        note:'Family-owned neighborhood trattoria', active:true},
   {name:"Davio's N. Italian",       meta:'Italian / Steakhouse ⭐ 3.8',  area:'Reston',        note:'Upscale Northern Italian steakhouse', active:true},
+  {name:'Glory Days Grill',         meta:'American / Sports Bar ⭐ 4.2', area:'Reston',        note:'Budget-friendly',                  active:true},
   // — Falls Church —
   {name:'Seoul Prime',              meta:'Korean Steakhouse ⭐ 4.9',     area:'Falls Church',  note:'',                         active:true},
   {name:"Chasin' Tails",            meta:'Cajun Seafood',                area:'Falls Church',  note:'',                         active:true},
@@ -255,6 +261,8 @@ const ALL = [
   {name:'Thompson Italian',         meta:'Italian ⭐ 4.1',               area:'Falls Church',  note:'Fresh pasta, husband-and-wife team', active:true},
   {name:'Sfizi Cafe',               meta:'Italian ⭐ 4.2',               area:'Falls Church',  note:'Cozy neighborhood trattoria', active:true},
   {name:"Pistone's Italian Inn",    meta:'Italian ⭐ 4.0',               area:'Falls Church',  note:'Long-standing family Italian inn', active:true},
+  {name:'Pho 75',                   meta:'Vietnamese Pho ⭐ 4.6',        area:'Falls Church',  note:'Budget-friendly. Legendary pho',   active:true},
+  {name:'Bangkok Golden',           meta:'Thai ⭐ 4.4',                  area:'Falls Church',  note:'Budget-friendly',                  active:true},
   // — Fairfax —
   {name:"Artie's",                  meta:'American ⭐ 4.6',               area:'Fairfax',       note:'',                         active:true},
   {name:'Ariake Japanese',          meta:'Sushi / Japanese',             area:'Fairfax',       note:'',                         active:true},
@@ -262,6 +270,8 @@ const ALL = [
   {name:'Mama Chang',               meta:'Chinese / Sichuan ⭐ 4.3',     area:'Fairfax',       note:'',                         active:true},
   {name:'Ugly Dumpling',            meta:'Chinese / Dumplings ⭐ 4.7',   area:'Fairfax',       note:'Fair Oaks Mall',           active:true},
   {name:'IPanda Dumplings',         meta:'Chinese / Dumplings ⭐ 4.8',   area:'Fairfax',       note:'',                         active:true},
+  {name:"Anita's Mexican Fairfax",  meta:'Mexican ⭐ 4.3',               area:'Fairfax',       note:'Budget-friendly. Local NoVA chain', active:true},
+  {name:'Crisp & Juicy',            meta:'Peruvian Chicken ⭐ 4.5',      area:'Fairfax',       note:'Budget-friendly',                  active:true},
   // — Oakton —
   {name:'Old Peking',               meta:'Chinese ⭐ 4.0',                area:'Oakton',        note:'Neighborhood gem',         active:true},
   {name:"Hamrock's",                meta:'American / GF-friendly',       area:'Oakton',        note:'',                         active:true},
@@ -284,6 +294,11 @@ const ALL = [
   {name:'Peter Chang Arlington',    meta:'Chinese / Sichuan ⭐ 4.2',     area:'Arlington',     note:'',                         active:true},
   {name:'Pines of Florence',        meta:'Italian ⭐ 4.9',               area:'Arlington',     note:'35+ years, neighborhood gem', active:true},
   {name:'Sfoglina',                 meta:'Italian / Pasta',              area:'Arlington',     note:'Handmade pasta, Fabio Trabocchi', active:true},
+  {name:'Pho 75 Arlington',         meta:'Vietnamese Pho ⭐ 4.6',        area:'Arlington',     note:'Budget-friendly. An institution',  active:true},
+  {name:'El Pollo Rico',            meta:'Peruvian Chicken ⭐ 4.6',      area:'Arlington',     note:'Budget-friendly. Cash only, legendary', active:true},
+  {name:"Bob & Edith's Diner",      meta:'American Diner ⭐ 4.4',        area:'Arlington',     note:'Budget-friendly. Open 24hrs',      active:true},
+  {name:'Taqueria El Poblano',      meta:'Mexican Tacos ⭐ 4.5',         area:'Arlington',     note:'Budget-friendly. Authentic tacos', active:true},
+  {name:'Nam Viet',                 meta:'Vietnamese ⭐ 4.4',            area:'Arlington',     note:'Budget-friendly',                  active:true},
   // — Vienna —
   {name:'Evelyn Rose',              meta:'New American ⭐ 4.7',           area:'Vienna',        note:'',                         active:true},
   {name:'Clarity',                  meta:'French-American',              area:'Vienna',        note:'',                         active:true},
@@ -295,6 +310,7 @@ const ALL = [
   {name:"Bing Bing's Dumpling",     meta:'Chinese / Dumplings ⭐ 4.9',   area:'Vienna',        note:'',                         active:true},
   {name:"Chan's Kitchen",           meta:'Chinese ⭐ 4.7',                area:'Vienna',        note:'',                         active:true},
   {name:"Roberto's Ristorante",     meta:'Italian ⭐ 4.5',               area:'Vienna',        note:'Upscale; tableside pasta service', active:true},
+  {name:"Anita's Mexican Vienna",   meta:'Mexican ⭐ 4.3',               area:'Vienna',        note:'Budget-friendly. Local NoVA chain', active:true},
   // — McLean —
   {name:'Town Kitchen & Bar',       meta:'New American',                 area:'McLean',        note:'',                         active:true},
   {name:'Neutral Ground',           meta:'New Orleans Inspired',         area:'McLean',        note:'',                         active:true},
@@ -311,6 +327,8 @@ const ALL = [
   {name:'A&J Restaurant',           meta:'Taiwanese / Chinese ⭐ 4.4',   area:'Annandale',     note:'Legendary cheap eats',     active:true},
   {name:"Duck Chang's",             meta:'Chinese / Peking Duck ⭐ 4.4', area:'Annandale',     note:'Est. 1975',                active:true},
   {name:'Szechuan Star',            meta:'Chinese ⭐ 4.3',               area:'Annandale',     note:'',                         active:true},
+  {name:'Honey Pig',                meta:'Korean BBQ ⭐ 4.3',            area:'Annandale',     note:'Budget-friendly. Open late',       active:true},
+  {name:'Lighthouse Tofu',          meta:'Korean / Tofu Soup ⭐ 4.5',    area:'Annandale',     note:'Budget-friendly',                  active:true},
   // — Springfield —
   {name:"Mike's American",          meta:'American ⭐ 4.6',               area:'Springfield',   note:'',                         active:true},
   {name:'Yard House',               meta:'American / Sports Bar',        area:'Springfield',   note:'',                         active:true},
@@ -318,6 +336,7 @@ const ALL = [
   {name:'The Farmhouse Tuscan',     meta:'Italian',                      area:'Springfield',   note:'',                         active:true},
   {name:'Hot Peppercorn',           meta:'Chinese ⭐ 4.3',               area:'Springfield',   note:'',                         active:true},
   {name:'Hunan Taste',              meta:'Chinese ⭐ 4.4',               area:'Springfield',   note:'',                         active:true},
+  {name:'Glory Days Springfield',   meta:'American / Sports Bar ⭐ 4.2', area:'Springfield',   note:'Budget-friendly',                  active:true},
   // — Chantilly —
   {name:'Izakaya Nana',             meta:'Japanese / Sushi ⭐ 4.7',      area:'Chantilly',     note:'',                         active:true},
   {name:'Lazy Dog',                 meta:'American ⭐ 4.6',               area:'Chantilly',     note:'',                         active:true},
@@ -325,6 +344,7 @@ const ALL = [
   {name:'Bourbon Blvd Steak',       meta:'Steakhouse',                   area:'Chantilly',     note:'',                         active:true},
   {name:"Cheng's Asian House",      meta:'Chinese ⭐ 4.4',               area:'Chantilly',     note:'',                         active:true},
   {name:'Yu Noodles Chantilly',     meta:'Chinese / Dumplings ⭐ 4.7',   area:'Chantilly',     note:'',                         active:true},
+  {name:"Anita's Mexican Chantilly",meta:'Mexican ⭐ 4.3',               area:'Chantilly',     note:'Budget-friendly. Local NoVA chain', active:true},
   // — Centreville —
   {name:'Sweetwater Centreville',   meta:'American Brewery',             area:'Centreville',   note:'',                         active:true},
   {name:'Ciao Osteria',             meta:'Italian ⭐ 4.5',                area:'Centreville',   note:'',                         active:true},
@@ -339,6 +359,7 @@ const ALL = [
   {name:'Chin-Chin Cafe',           meta:'Chinese / Thai / Sushi ⭐ 4.5',area:'Ashburn',       note:'',                         active:true},
   {name:"Yen's Kitchen",            meta:'Chinese / Sushi ⭐ 4.4',       area:'Ashburn',       note:'',                         active:true},
   {name:'Pazzo Pomodoro',           meta:'Italian ⭐ 4.3',               area:'Ashburn',       note:'Award-winning authentic Italian', active:true},
+  {name:'Crisp & Juicy Ashburn',    meta:'Peruvian Chicken ⭐ 4.5',      area:'Ashburn',       note:'Budget-friendly',                  active:true},
   // — Leesburg —
   {name:'Tuscarora Mill',           meta:'American ⭐ 4.6',               area:'Leesburg',      note:'',                         active:true},
   {name:'Lightfoot Restaurant',     meta:'New American ⭐ 4.5',           area:'Leesburg',      note:'',                         active:true},
