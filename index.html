@@ -241,6 +241,9 @@ const ALL = [
   {name:'Pasara Thai',              meta:'Thai ⭐ 4.4',                   area:'Alexandria',    note:'Budget-friendly. 20+ yr family-owned', active:true},
   {name:'Bastille Brasserie',       meta:'French ⭐ 4.6',                 area:'Alexandria',    note:'Award-winning French brasserie',   active:true},
   {name:'Que Rico',                 meta:'Puerto Rican ⭐ 4.5',           area:'Alexandria',    note:'Budget-friendly. Del Ray gem',     active:true},
+  {name:'Makeda Ethiopian',         meta:'Ethiopian ⭐ 4.5',              area:'Alexandria',    note:'Budget-friendly',                  active:true},
+  {name:'Taqueria Cancun',          meta:'Mexican Tacos ⭐ 4.3',          area:'Alexandria',    note:'Budget-friendly. Tacos & tortas',  active:true},
+  {name:'Taco Ssam',                meta:'Korean-Mexican ⭐ 4.3',         area:'Alexandria',    note:'Budget-friendly',                  active:true},
   // — Herndon —
   {name:'Maharani Palace',          meta:'Indian ⭐ 4.8',                 area:'Herndon',       note:'',                         active:true},
   {name:'Zeffirelli',               meta:'Italian',                      area:'Herndon',       note:'',                         active:true},
@@ -258,6 +261,7 @@ const ALL = [
   {name:'Tipicos Gloria',           meta:'Salvadoran ⭐ 4.5',             area:'Herndon',       note:'Budget-friendly. Pupusas from $4.50', active:true},
   {name:'Wooboi Hot Chicken',       meta:'Korean Hot Chicken ⭐ 4.4',     area:'Herndon',       note:'Budget-friendly. WaPo-praised',     active:true},
   {name:'Crust Pizzeria Napoletana',meta:'Neapolitan Pizza ⭐ 4.4',       area:'Herndon',       note:'Budget-friendly. Charred pies',     active:true},
+  {name:'Anatolian Bistro',         meta:'Turkish / Mediterranean ⭐ 4.4',area:'Herndon',       note:'Budget-friendly',                  active:true},
   // — Reston —
   {name:'Lantern House',            meta:'Vietnamese ⭐ 4.8',             area:'Reston',        note:'',                         active:true},
   {name:'Pisco y Nazca',            meta:'Peruvian ⭐ 4.9',               area:'Reston',        note:'',                         active:true},
@@ -270,6 +274,8 @@ const ALL = [
   {name:'Bansari Indian',           meta:'Indian ⭐ 4.5',                 area:'Reston',        note:'Budget-friendly. Veg-friendly',    active:true},
   {name:'Taco Zocalo',              meta:'Mexican ⭐ 4.4',                area:'Reston',        note:'Budget-friendly. Birria tacos, hand-pressed tortillas', active:true},
   {name:'Taste of Istanbul',        meta:'Turkish ⭐ 4.6',                area:'Reston',        note:'Budget-friendly. Doner kebabs, kofte', active:true},
+  {name:'JINYA Ramen Bar',          meta:'Japanese Ramen ⭐ 4.4',         area:'Reston',        note:'Budget-friendly. Town Center',     active:true},
+  {name:'Noku Sushi Reston',        meta:'Sushi / Ramen / Korean BBQ ⭐ 4.4',area:'Reston',     note:'Budget-friendly. Reston Row',      active:true},
   {name:'Masti Indian',             meta:'Indian / Nepali Fusion ⭐ 4.4', area:'Reston',        note:'Town Center',                      active:true},
   // — Falls Church —
   {name:'Seoul Prime',              meta:'Korean Steakhouse ⭐ 4.9',     area:'Falls Church',  note:'',                         active:true},
@@ -292,6 +298,11 @@ const ALL = [
   {name:'Yeshi Kitfo',              meta:'Ethiopian ⭐ 4.4',              area:'Falls Church',  note:'Budget-friendly. Kitfo specialist', active:true},
   {name:'Nazret Ethiopia',          meta:'Ethiopian ⭐ 4.3',              area:'Falls Church',  note:'Budget-friendly. Huge sharing platters', active:true},
   {name:'La Tingeria',              meta:'Mexican Tacos ⭐ 4.4',          area:'Falls Church',  note:'Budget-friendly. Tacos from $3.50', active:true},
+  {name:'Fairfax Inn Restaurant',   meta:'Filipino ⭐ 4.4',               area:'Falls Church',  note:'Budget-friendly',                  active:true},
+  {name:'Borek-G Turkish',          meta:'Turkish / Mediterranean ⭐ 4.4',area:'Falls Church',  note:'Budget-friendly',                  active:true},
+  {name:'Celebrity Delly',          meta:'Jewish Deli ⭐ 4.3',            area:'Falls Church',  note:'Budget-friendly. Sandwiches & deli classics', active:true},
+  {name:'Taco Ssam Falls Church',   meta:'Korean-Mexican ⭐ 4.4',         area:'Falls Church',  note:'Budget-friendly',                  active:true},
+  {name:'Taqueria Cancun FC',       meta:'Mexican Tacos ⭐ 4.3',          area:'Falls Church',  note:'Budget-friendly',                  active:true},
   // — Fairfax —
   {name:"Artie's",                  meta:'American ⭐ 4.6',               area:'Fairfax',       note:'',                         active:true},
   {name:'Ariake Japanese',          meta:'Sushi / Japanese',             area:'Fairfax',       note:'',                         active:true},
@@ -310,15 +321,25 @@ const ALL = [
   {name:'Shake Shack Fairfax',      meta:'Burgers ⭐ 4.2',                area:'Fairfax',       note:'Budget-friendly. District Ave',    active:true},
   {name:'Dave\'s Hot Chicken Fairfax',meta:'Nashville Hot Chicken ⭐ 4.4',area:'Fairfax',       note:'Budget-friendly. Halal chicken',   active:true},
   {name:'Wooboi Hot Chicken Fairfax',meta:'Korean Hot Chicken ⭐ 4.4',   area:'Fairfax',       note:'Budget-friendly. Fair Lakes',       active:true},
-  {name:'Taqueria Cancun',          meta:'Mexican ⭐ 4.3',                area:'Fairfax',       note:'Budget-friendly. Tacos & tortas',   active:true},
+  {name:'Taqueria Cancun Fairfax',  meta:'Mexican ⭐ 4.3',                area:'Fairfax',       note:'Budget-friendly. Tacos & tortas',   active:true},
+  {name:'Wow Nepal',                meta:'Nepalese ⭐ 4.6',               area:'Fairfax',       note:'Budget-friendly. Street food, opened 2026', active:true},
+  {name:'Tandoori Fairfax',         meta:'Indian / Nepalese ⭐ 4.3',      area:'Fairfax',       note:'Budget-friendly',                  active:true},
+  {name:'Curry Mantra',             meta:'Indian ⭐ 4.3',                  area:'Fairfax',       note:'Budget-friendly',                  active:true},
+  {name:'Bollywood Bistro',         meta:'Indian ⭐ 4.4',                  area:'Fairfax',       note:'Budget-friendly',                  active:true},
+  {name:'Marumen',                  meta:'Japanese Ramen ⭐ 4.5',         area:'Fairfax',       note:'Budget-friendly',                  active:true},
+  {name:'Genki Izakaya',            meta:'Japanese Ramen / Sushi ⭐ 4.4', area:'Fairfax',       note:'Budget-friendly',                  active:true},
+  {name:"Hangry Joe's Fairfax",     meta:'Korean Fried Chicken ⭐ 4.3',   area:'Fairfax',       note:'Budget-friendly',                  active:true},
+  {name:'Taco Bamba Fairfax',       meta:'Mexican Fusion ⭐ 4.4',         area:'Fairfax',       note:'Budget-friendly',                  active:true},
   {name:'bartaco Reston',           meta:'Tacos ⭐ 4.4',                   area:'Reston',        note:'Budget-friendly. Town Center',     active:true},
   {name:'Shake Shack Reston',       meta:'Burgers ⭐ 4.2',                area:'Reston',        note:'Budget-friendly. Town Center',     active:true},
   {name:'Yalla Pita',               meta:'Mediterranean ⭐ 4.5',          area:'Oakton',        note:'Budget-friendly. Shawarma, falafel, kebabs', active:true},
+  {name:'WNB Factory Oakton',       meta:'Wings & Burgers ⭐ 4.3',        area:'Oakton',        note:'Budget-friendly',                  active:true},
+  {name:"Hangry Joe's Oakton",      meta:'Korean Fried Chicken ⭐ 4.3',   area:'Oakton',        note:'Budget-friendly',                  active:true},
   // — Oakton —
   {name:'Old Peking',               meta:'Chinese ⭐ 4.0',                area:'Oakton',        note:'Neighborhood gem',         active:true},
   {name:"Hamrock's",                meta:'American / GF-friendly',       area:'Oakton',        note:'',                         active:true},
   // — Tysons —
-  {name:'Founding Farmers',         meta:'American ⭐ 4.6',               area:'Tysons',        note:'',                         active:true},
+
   {name:'Wildfire',                 meta:'Steakhouse',                   area:'Tysons',        note:'',                         active:true},
   {name:'Coastal Flats',            meta:'Seafood / American',           area:'Tysons',        note:'',                         active:true},
   {name:'Wren Tysons',              meta:'New American',                 area:'Tysons',        note:'',                         active:true},
@@ -348,6 +369,10 @@ const ALL = [
   {name:'Bostan Uyghur Arlington',  meta:'Uyghur / Central Asian ⭐ 4.5', area:'Arlington',     note:'Budget-friendly. Hand-pulled noodles, halal', active:true},
   {name:'Roll Play Vietnamese',     meta:'Vietnamese Fast Casual ⭐ 4.3', area:'Arlington',     note:'Budget-friendly. Pho, banh mi, bowls', active:true},
   {name:'Delhi Dhaba',              meta:'Indian ⭐ 4.3',                  area:'Arlington',     note:'Budget-friendly. Create-your-own tiffin', active:true},
+  {name:'Taco Bamba Ballston',      meta:'Mexican Fusion ⭐ 4.4',         area:'Arlington',     note:'Budget-friendly',                  active:true},
+  {name:'Kabob Bazaar',             meta:'Persian / Kabob ⭐ 4.4',        area:'Arlington',     note:'Budget-friendly',                  active:true},
+  {name:'Kabobistan',               meta:'Afghan ⭐ 4.3',                  area:'Arlington',     note:'Budget-friendly. Halal',           active:true},
+  {name:'Tacos Los Primos',         meta:'Mexican Street Tacos ⭐ 4.4',   area:'Arlington',     note:'Budget-friendly. Tacos from ~$3',  active:true},
   {name:'Rus Uz',                   meta:'Russian / Uzbek ⭐ 4.3',        area:'Arlington',     note:'Budget-friendly. Unique in NoVA',  active:true},
   {name:"Ruthie's All-Day",         meta:'Southern BBQ / American ⭐ 4.4',area:'Arlington',     note:'Budget-friendly. All-day brunch',  active:true},
   {name:'Pho 75 Arlington',         meta:'Vietnamese Pho ⭐ 4.6',        area:'Arlington',     note:'Budget-friendly. An institution',  active:true},
@@ -371,7 +396,12 @@ const ALL = [
   {name:'Blessing Cafe',            meta:'Korean-American ⭐ 4.4',        area:'Tysons',        note:'Budget-friendly. Korean fried chicken sandwiches', active:true},
   {name:'Fish Taco Tysons',         meta:'Taqueria ⭐ 4.3',               area:'Tysons',        note:'Budget-friendly. Fresh tacos & bowls', active:true},
   {name:'Gagawa',                   meta:'Filipino Fast Casual ⭐ 4.3',   area:'Tysons',        note:'Budget-friendly. Marinated chicken & rice', active:true},
+  {name:'Istanbul Kitchen',         meta:'Turkish Fast Casual ⭐ 4.4',    area:'Tysons',        note:'Budget-friendly',                  active:true},
+  {name:'Maman Joon',               meta:'Persian / Kabob ⭐ 4.3',        area:'Tysons',        note:'Budget-friendly',                  active:true},
+  {name:'Chao Bàn',                 meta:'Vietnamese Fast Casual ⭐ 4.4', area:'Tysons',        note:'Budget-friendly. Michelin-chef Kevin Tien', active:true},
   {name:"Anita's Mexican Vienna",   meta:'Mexican ⭐ 4.3',               area:'Vienna',        note:'Budget-friendly. Local NoVA chain', active:true},
+  {name:'Shamshiry',                meta:'Persian ⭐ 4.5',                area:'Vienna',        note:'Budget-friendly. Kabobs & stews',  active:true},
+  {name:'Vienna Inn',               meta:'American Diner ⭐ 4.3',         area:'Vienna',        note:'Budget-friendly. Classic diner since 1960s', active:true},
   {name:'Amma Vegetarian Kitchen',  meta:'South Indian Vegetarian ⭐ 4.4',area:'Vienna',       note:'Budget-friendly. Masala dosas, idli, uttappam', active:true},
   {name:'Plaka Grill',              meta:'Greek Fast Casual ⭐ 4.5',      area:'Vienna',        note:'Budget-friendly. Gyros from $10.95', active:true},
   {name:'Spice Kadai',              meta:'Indian Street Food ⭐ 4.3',     area:'Vienna',        note:'Budget-friendly. Masala egg dishes', active:true},
@@ -387,6 +417,8 @@ const ALL = [
   {name:'Masala Indian',            meta:'Indian / Nepali ⭐ 4.3',        area:'McLean',        note:'Budget-friendly',                  active:true},
   {name:'Esaan Tumbar',             meta:'Thai (Isaan) ⭐ 4.4',           area:'McLean',        note:'Budget-friendly. Outdoor seating', active:true},
   {name:'El Tio',                   meta:'Mexican ⭐ 4.3',                area:'McLean',        note:'Budget-friendly. Kid-friendly',    active:true},
+  {name:'Maman Joon McLean',        meta:'Persian / Kabob ⭐ 4.3',        area:'McLean',        note:'Budget-friendly',                  active:true},
+  {name:'Divan Restaurant',         meta:'Persian ⭐ 4.4',                area:'McLean',        note:'Upscale Persian classics',         active:true},
   // — Annandale —
   {name:'1943 Classic',             meta:'Korean ⭐ 4.8',                 area:'Annandale',     note:'',                         active:true},
   {name:'OiSO Korean',              meta:'Korean Street Food ⭐ 4.9',    area:'Annandale',     note:'',                         active:true},
@@ -405,6 +437,8 @@ const ALL = [
   {name:'9292 Korean BBQ',          meta:'Korean BBQ ⭐ 4.2',             area:'Annandale',     note:'Budget-friendly. À la carte bulgogi & pork belly', active:true},
   {name:'Tosok Jip',                meta:'Korean ⭐ 4.5',                  area:'Annandale',     note:'Budget-friendly. Bibimbap, jjigae, broiled fish', active:true},
   {name:'Feru Bar and Restaurant',  meta:'Ethiopian ⭐ 4.3',              area:'Annandale',     note:'Budget-friendly. Injera, tibs, veggie combos', active:true},
+  {name:'Taco Ssam Annandale',      meta:'Korean-Mexican ⭐ 4.4',         area:'Annandale',     note:'Budget-friendly',                  active:true},
+  {name:"Hangry Joe's Annandale",   meta:'Korean Fried Chicken ⭐ 4.3',   area:'Annandale',     note:'Budget-friendly',                  active:true},
   // — Springfield —
   {name:"Mike's American",          meta:'American ⭐ 4.6',               area:'Springfield',   note:'',                         active:true},
   {name:'Yard House',               meta:'American / Sports Bar',        area:'Springfield',   note:'',                         active:true},
@@ -419,6 +453,8 @@ const ALL = [
   {name:'Le Bledo',                 meta:'Vietnamese ⭐ 4.4',              area:'Springfield',   note:'Budget-friendly. Bun bo hue, mi quang, pho', active:true},
   {name:'Brothers Bistro',          meta:'Vietnamese ⭐ 4.3',              area:'Springfield',   note:'Budget-friendly. Bun dishes & rice plates', active:true},
   {name:'Pho Saigon Quan',          meta:'Vietnamese Pho ⭐ 4.3',         area:'Springfield',   note:'Budget-friendly. Classic broths',  active:true},
+  {name:'Kamayan Fiesta',           meta:'Filipino ⭐ 4.3',               area:'Springfield',   note:'Budget-friendly',                  active:true},
+  {name:"Hangry Joe's Springfield", meta:'Korean Fried Chicken ⭐ 4.3',   area:'Springfield',   note:'Budget-friendly',                  active:true},
   // — Chantilly —
   {name:'Izakaya Nana',             meta:'Japanese / Sushi ⭐ 4.7',      area:'Chantilly',     note:'',                         active:true},
   {name:'Lazy Dog',                 meta:'American ⭐ 4.6',               area:'Chantilly',     note:'',                         active:true},
@@ -432,6 +468,8 @@ const ALL = [
   {name:'My Thai Place',            meta:'Thai ⭐ 4.3',                   area:'Chantilly',     note:'Budget-friendly',                  active:true},
   {name:'Woomiga',                  meta:'Korean BBQ ⭐ 4.3',             area:'Chantilly',     note:'Budget-friendly. Galbi, bulgogi, tofu soup', active:true},
   {name:'Gamja Tang Specialist',    meta:'Korean ⭐ 4.5',                  area:'Chantilly',     note:'Budget-friendly. Hidden gem, spicy pork bone soup', active:true},
+  {name:'The Qui Korean BBQ',       meta:'Korean BBQ ⭐ 4.4',             area:'Chantilly',     note:'Budget-friendly. AYCE option',     active:true},
+  {name:"Hangry Joe's Chantilly",   meta:'Korean Fried Chicken ⭐ 4.3',   area:'Chantilly',     note:'Budget-friendly',                  active:true},
   // — Centreville —
   {name:'Sweetwater Centreville',   meta:'American Brewery',             area:'Centreville',   note:'',                         active:true},
   {name:'Ciao Osteria',             meta:'Italian ⭐ 4.5',                area:'Centreville',   note:'',                         active:true},
@@ -446,6 +484,11 @@ const ALL = [
   {name:'Pho 95',                   meta:'Vietnamese Pho ⭐ 4.4',         area:'Centreville',   note:'Budget-friendly. Centreville staple since 1985', active:true},
   {name:'Tomo Sushi & Grill',       meta:'Korean-Japanese ⭐ 4.3',        area:'Centreville',   note:'Budget-friendly. Sushi & Korean BBQ combo', active:true},
   {name:'La Estación Restaurante',  meta:'Salvadoran ⭐ 4.5',             area:'Centreville',   note:'Budget-friendly. Pupusas from $3', active:true},
+  {name:'Sō Korean BBQ',            meta:'Korean BBQ ⭐ 4.4',             area:'Centreville',   note:'Budget-friendly. AYCE option',     active:true},
+  {name:'Manna Bistro',             meta:'Ethiopian / Salvadoran ⭐ 4.4', area:'Centreville',   note:'Budget-friendly. Unique combo',    active:true},
+  {name:'The Ramyun Zip',           meta:'Ramen ⭐ 4.4',                   area:'Centreville',   note:'Budget-friendly. 100+ ramen varieties', active:true},
+  {name:'WNB Factory',              meta:'Wings & Burgers ⭐ 4.3',        area:'Centreville',   note:'Budget-friendly',                  active:true},
+  {name:"Hangry Joe's Centreville", meta:'Korean Fried Chicken ⭐ 4.3',   area:'Centreville',   note:'Budget-friendly',                  active:true},
   // — Ashburn —
   {name:'The Lost Fox',             meta:'American ⭐ 4.5',               area:'Ashburn',       note:'',                         active:true},
   {name:'Fountain Grill',           meta:'American ⭐ 4.9',               area:'Ashburn',       note:'',                         active:true},
@@ -489,6 +532,8 @@ const ALL = [
   {name:'Melt Gourmet Burgers',     meta:'Burgers ⭐ 4.5',               area:'Leesburg',      note:'Budget-friendly. 100% Angus beef', active:true},
   {name:"Shoe's Cup & Cork",        meta:'New American ⭐ 4.4',           area:'Leesburg',      note:'Budget-friendly. Secret garden patio', active:true},
   {name:'Blue Ridge Grill',         meta:'American ⭐ 4.3',               area:'Leesburg',      note:'Casual. Sunday brunch, since 2002', active:true},
+  {name:'Noku Sushi Leesburg',      meta:'Sushi / Ramen / Korean BBQ ⭐ 4.4',area:'Leesburg',   note:'Budget-friendly',                  active:true},
+  {name:'Los Tios Grill',           meta:'Mexican / Salvadoran ⭐ 4.3',   area:'Leesburg',      note:'Budget-friendly',                  active:true},
   {name:'Señor Ramon Taqueria',     meta:'Mexican Tacos ⭐ 4.4',          area:'Leesburg',      note:'Budget-friendly. Tacos, tortas, empanadas', active:true},
   {name:'Casa de Avila',            meta:'Mexican ⭐ 4.4',                area:'Leesburg',      note:'Budget-friendly. Birria tacos, carnitas', active:true},
   {name:'La Chocita Grill',         meta:'Latin American ⭐ 4.4',         area:'Leesburg',      note:'Budget-friendly. Salvadoran, Colombian, charcoal chicken', active:true},
@@ -496,6 +541,69 @@ const ALL = [
   {name:'Pho Bar',                  meta:'Vietnamese Pho ⭐ 4.4',         area:'Leesburg',      note:'Budget-friendly. Pho, banh mi, boba', active:true},
   {name:'FireWorks Pizza',          meta:'Wood-Fired Pizza ⭐ 4.4',       area:'Leesburg',      note:'Budget-friendly. Artisan pies, outdoor deck', active:true},
   {name:'Taste of Lebanon',         meta:'Lebanese ⭐ 4.4',               area:'Leesburg',      note:'Budget-friendly. Falafel, shawarma, mezze', active:true},
+  // — Alexandria (new) —
+  {name:'Makeda Ethiopian',          meta:'Ethiopian ⭐ 4.5',              area:'Alexandria',    note:'Budget-friendly. Injera platters, tibs, wot ~$15',  active:true},
+  {name:'Taqueria Cancun Alexandria',meta:'Mexican Tacos ⭐ 4.3',          area:'Alexandria',    note:'Budget-friendly. Birria, California burrito ~$12',  active:true},
+  {name:'Taco Ssam Alexandria',      meta:'Korean-Mexican Fusion ⭐ 4.3',  area:'Alexandria',    note:'Budget-friendly. Bulgogi tacos, gal-bee plate ~$12', active:true},
+  // — Arlington (new) —
+  {name:'Taco Bamba Ballston',       meta:'Mexican Fusion ⭐ 4.4',         area:'Arlington',     note:'Budget-friendly. All-day tacos & brunch ~$14',      active:true},
+  {name:'Kabob Bazaar',              meta:'Persian / Kabob ⭐ 4.4',        area:'Arlington',     note:'Budget-friendly. Authentic since 1993, kabobs ~$20', active:true},
+  {name:'Kabobistan',                meta:'Afghan ⭐ 4.3',                  area:'Arlington',     note:'Budget-friendly. Women-owned, kebabs & mantu ~$15', active:true},
+  {name:'Arlington Kabob',           meta:'Afghan ⭐ 4.4',                  area:'Arlington',     note:'Budget-friendly. Kabobs, naan, rice plates ~$16',   active:true},
+  {name:'Courthouse Kabob',          meta:'Afghan (Halal) ⭐ 4.3',          area:'Arlington',     note:'Budget-friendly. Halal, formerly Afghan Kabob House ~$15', active:true},
+  {name:'Tacos Los Primos',          meta:'Mexican Street Tacos ⭐ 4.4',   area:'Arlington',     note:'Budget-friendly. Columbia Pike gem ~$10',           active:true},
+  // — Falls Church (new) —
+  {name:'Fairfax Inn Restaurant',    meta:'Filipino ⭐ 4.4',               area:'Falls Church',  note:'Budget-friendly. All-day Filipino & American diner ~$14', active:true},
+  {name:'Borek-G Turkish',           meta:'Turkish / Mediterranean ⭐ 4.4',area:'Falls Church',  note:'Budget-friendly. Women-owned. Borek, kebabs ~$14',  active:true},
+  {name:'Celebrity Delly',           meta:'Jewish Deli ⭐ 4.3',             area:'Falls Church',  note:'Budget-friendly. Stacked pastrami, matzo ball soup ~$18', active:true},
+  {name:'Taco Ssam Falls Church',    meta:'Korean-Mexican Fusion ⭐ 4.4',  area:'Falls Church',  note:'Budget-friendly. Bailey\'s Crossroads. Birria, bulgogi tacos ~$11', active:true},
+  {name:'Taqueria Cancun FC',        meta:'Mexican Tacos ⭐ 4.3',          area:'Falls Church',  note:'Budget-friendly. Birria tacos, California burrito ~$12', active:true},
+  // — Fairfax (new) —
+  {name:'Wow Nepal',                 meta:'Nepalese ⭐ 4.6',               area:'Fairfax',       note:'Budget-friendly. New 2026. Momos $10–14, sekuwa ~$15', active:true},
+  {name:'Tandoori Fairfax',          meta:'Indian / Nepalese ⭐ 4.3',      area:'Fairfax',       note:'Budget-friendly. Momos, butter chicken ~$15',       active:true},
+  {name:'Curry Mantra',              meta:'Indian ⭐ 4.3',                  area:'Fairfax',       note:'Budget-friendly. Curries, biryani, lunch buffet ~$16', active:true},
+  {name:'Bollywood Bistro',          meta:'Indian ⭐ 4.4',                  area:'Fairfax',       note:'Budget-friendly. Weekend buffet, North & South Indian ~$18', active:true},
+  {name:'Marumen',                   meta:'Japanese Ramen / Izakaya ⭐ 4.5',area:'Fairfax',      note:'Budget-friendly. Shoyu, miso, tonkotsu ramen ~$15', active:true},
+  {name:'Genki Izakaya',             meta:'Japanese Ramen / Sushi ⭐ 4.4', area:'Fairfax',       note:'Tonkotsu & spicy miso ramen, yakitori ~$18',        active:true},
+  {name:'Hangry Joe\'s Fairfax',     meta:'Korean Fried Chicken ⭐ 4.3',   area:'Fairfax',       note:'Budget-friendly. Soy garlic & spicy wings ~$14',    active:true},
+  {name:'Taco Bamba Fairfax',        meta:'Mexican Fusion ⭐ 4.4',         area:'Fairfax',       note:'Budget-friendly. Chef-driven tacos ~$14',           active:true},
+  // — Oakton (new) —
+  {name:'WNB Factory Oakton',        meta:'Wings & Burgers ⭐ 4.3',        area:'Oakton',        note:'Budget-friendly. 25 wing flavors, Angus burgers ~$16', active:true},
+  {name:'Hangry Joe\'s Oakton',      meta:'Korean Fried Chicken ⭐ 4.3',   area:'Oakton',        note:'Budget-friendly. Soy garlic & spicy wings ~$14',    active:true},
+  // — Tysons (new) —
+  {name:'Istanbul Kitchen',          meta:'Turkish Fast Casual ⭐ 4.4',    area:'Tysons',        note:'Budget-friendly. Women-owned. Kebabs, wraps ~$14',  active:true},
+  {name:'Maman Joon Tysons',         meta:'Persian / Kabob ⭐ 4.3',        area:'Tysons',        note:'Budget-friendly. Halal Persian kabobs ~$16',        active:true},
+  {name:'Chao Bàn',                  meta:'Vietnamese Fast Casual ⭐ 4.4', area:'Tysons',        note:'Budget-friendly. New 2026. Banh mi, pho, rice bowls ~$14', active:true},
+  // — McLean (new) —
+  {name:'Maman Joon McLean',         meta:'Persian / Kabob ⭐ 4.3',        area:'McLean',        note:'Budget-friendly. Halal Persian kabobs ~$16',        active:true},
+  {name:'Divan Restaurant',          meta:'Persian ⭐ 4.4',                 area:'McLean',        note:'Kabobs, stews, saffron rice ~$30',                  active:true},
+  {name:'Shamshiry',                 meta:'Persian ⭐ 4.5',                 area:'Vienna',        note:'Budget-friendly. Beloved since 1993. Kabobs, stews ~$20', active:true},
+  // — Vienna (new) —
+  {name:'Vienna Inn',                meta:'American Diner ⭐ 4.3',          area:'Vienna',        note:'Budget-friendly. NoVA icon since 1960. Chili dogs ~$10', active:true},
+  // — Annandale (new) —
+  {name:'Taco Ssam Annandale',       meta:'Korean-Mexican Fusion ⭐ 4.4',  area:'Annandale',     note:'Budget-friendly. Bulgogi tacos, gal-bee plate ~$11', active:true},
+  {name:'Hangry Joe\'s Annandale',   meta:'Korean Fried Chicken ⭐ 4.3',   area:'Annandale',     note:'Budget-friendly. Open until 4am. Wings & sandwiches ~$14', active:true},
+  // — Springfield (new) —
+  {name:'Kamayan Fiesta',            meta:'Filipino ⭐ 4.3',               area:'Springfield',   note:'Budget-friendly. Family-owned. Lechon kawali, adobo ~$13', active:true},
+  {name:'Hangry Joe\'s Springfield', meta:'Korean Fried Chicken ⭐ 4.3',   area:'Springfield',   note:'Budget-friendly. Wings, tenders, sandwiches ~$14',  active:true},
+  // — Chantilly (new) —
+  {name:'The Qui Korean BBQ',        meta:'Korean BBQ / AYCE ⭐ 4.4',      area:'Chantilly',     note:'Budget-friendly. All-you-can-eat option, brisket & pork belly ~$25', active:true},
+  {name:'Hangry Joe\'s Chantilly',   meta:'Korean Fried Chicken ⭐ 4.3',   area:'Chantilly',     note:'Budget-friendly. Wings, soy garlic, spicy smoke BBQ ~$14', active:true},
+  // — Centreville (new) —
+  {name:'Sō Korean BBQ',             meta:'Korean BBQ ⭐ 4.4',             area:'Centreville',   note:'Modern tabletop grills, craft cocktail bar ~$35',   active:true},
+  {name:'Manna Bistro',              meta:'Ethiopian / Salvadoran ⭐ 4.4', area:'Centreville',   note:'Budget-friendly. Injera platters & handmade pupusas ~$16', active:true},
+  {name:'The Ramyun Zip',            meta:'Ramen (100+ Varieties) ⭐ 4.4', area:'Centreville',   note:'Budget-friendly. Birria ramen, vegan options ~$14', active:true},
+  {name:'WNB Factory Centreville',   meta:'Wings & Burgers ⭐ 4.3',        area:'Centreville',   note:'Budget-friendly. 25 wing flavors, Angus burgers ~$16', active:true},
+  {name:'Hangry Joe\'s Centreville', meta:'Korean Fried Chicken ⭐ 4.3',   area:'Centreville',   note:'Budget-friendly. Wings & tenders ~$14',             active:true},
+  // — Ashburn (new) —
+  {name:'Noku Sushi Leesburg',       meta:'Sushi / Ramen / Korean BBQ ⭐ 4.4', area:'Leesburg',  note:'Budget-friendly. Village at Leesburg. Sushi, hibachi, ramen ~$25', active:true},
+  // — Herndon (new) —
+  {name:'Anatolian Bistro',          meta:'Turkish / Mediterranean ⭐ 4.4',area:'Herndon',       note:'Budget-friendly. Kebabs, pide, mezes ~$18',         active:true},
+  // — Reston (new) —
+  {name:'JINYA Ramen Bar',           meta:'Japanese Ramen ⭐ 4.4',         area:'Reston',        note:'Tonkotsu broth, customize your bowl ~$18',          active:true},
+  {name:'Noku Sushi Reston',         meta:'Sushi / Ramen / Korean BBQ ⭐ 4.4', area:'Reston',    note:'Budget-friendly. Reston Row. New 2026. Sushi, ramen ~$25', active:true},
+  // — Leesburg (new) —
+  {name:'Los Tios Grill',            meta:'Mexican / Salvadoran ⭐ 4.3',   area:'Leesburg',      note:'Budget-friendly. Pupusas, fajitas, carne asada ~$18', active:true},
 ];
 
 const AREAS = ['Alexandria','Herndon','Reston','Falls Church','Fairfax','Oakton','Tysons','Arlington','Vienna','McLean','Annandale','Springfield','Chantilly','Centreville','Ashburn','Leesburg'];
