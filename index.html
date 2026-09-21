@@ -128,7 +128,6 @@ canvas { display: block; border-radius: 50%; }
 .rest-item input[type="checkbox"] { width: 13px; height: 13px; accent-color: #72d072; cursor: pointer; flex-shrink: 0; }
 .rest-item input[type="checkbox"]:focus-visible { outline: 2px solid #72d072; outline-offset: 1px; }
 
-.peanut-tag { margin-left: auto; font-size: 10px; color: #a07030; flex-shrink: 0; }
 
 .delete-btn {
   margin-left: auto;
@@ -158,7 +157,7 @@ canvas { display: block; border-radius: 50%; }
 <body>
 
 <h1>Dinner Night Wheel</h1>
-<p class="sub">Northern Virginia · no peanut oil (except Chick-fil-A)</p>
+<p class="sub">Northern Virginia &amp; the Shenandoah Valley</p>
 
 <div class="filter-section">
   <div class="filter-label">Filter by area — tap to toggle multiple</div>
@@ -286,7 +285,7 @@ const ALL = [
   {name:"Chasin' Tails",            meta:'Cajun Seafood',                area:'Falls Church',  note:'',                         price:'$$', active:true},
   {name:'Sweetwater Tavern FC',     meta:'American Brewery',             area:'Falls Church',  note:'',                         price:'$$', active:true},
   {name:'The Falls',                meta:'American',                     area:'Falls Church',  note:'',                         price:'$$', active:true},
-  {name:'Chick-fil-A',              meta:'Fast Food Chicken',            area:'Falls Church',  note:'Peanut oil — approved',    price:'$', active:true},
+  {name:'Chick-fil-A',              meta:'Fast Food Chicken',            area:'Falls Church',  note:'',                        price:'$', active:true},
   {name:'Honest Grill',             meta:'Korean BBQ',                   area:'Falls Church',  note:'',                         price:'$', active:true},
   {name:'Taco Bamba',               meta:'Mexican Fusion',               area:'Falls Church',  note:'',                         price:'$', active:true},
   {name:'Peking Gourmet Inn',       meta:'Chinese / Peking Duck ⭐ 4.2', area:'Falls Church',  note:'Legendary duck spot',      price:'$$$', active:true},
@@ -697,7 +696,7 @@ const ALL = [
   {name:'Panda Express Chantilly',             meta:'Fast Casual Chinese',               area:'Chantilly',     note:'',                                      price:'$',   active:true},
   {name:'Panera Bread Chantilly',              meta:'Bakery / Sandwiches',               area:'Chantilly',     note:'',                                      price:'$',   active:true},
   {name:'Potbelly Chantilly',                  meta:'Toasted Subs',                      area:'Chantilly',     note:'',                                      price:'$',   active:true},
-  {name:'Texas Roadhouse Chantilly',           meta:'Steakhouse / Family',               area:'Chantilly',     note:'Rolls & peanuts',                       price:'$$',  active:true},
+  {name:'Texas Roadhouse Chantilly',           meta:'Steakhouse / Family',               area:'Chantilly',     note:'Free rolls, big portions',              price:'$$',  active:true},
   {name:'Wingstop Chantilly',                  meta:'Wings / Fast Casual',               area:'Chantilly',     note:'',                                      price:'$',   active:true},
   // — Fairfax —
   {name:'Bonchon Fairfax',                     meta:'Korean Fried Chicken',              area:'Fairfax',       note:'',                                      price:'$',   active:true},
@@ -709,7 +708,7 @@ const ALL = [
   {name:'Pho 102',                             meta:'Vietnamese Pho',                    area:'Fairfax',       note:'',                                      price:'$',   active:true},
   {name:'Potbelly Fairfax',                    meta:'Toasted Subs',                      area:'Fairfax',       note:'',                                      price:'$',   active:true},
   {name:'Silver Diner Fairfax',                meta:'Diner / American',                  area:'Fairfax',       note:'Kid-friendly, open late',               price:'$',   active:true},
-  {name:'Texas Roadhouse Fairfax',             meta:'Steakhouse / Family',               area:'Fairfax',       note:'Rolls & peanuts',                       price:'$$',  active:true},
+  {name:'Texas Roadhouse Fairfax',             meta:'Steakhouse / Family',               area:'Fairfax',       note:'Free rolls, big portions',              price:'$$',  active:true},
   {name:'Wingstop Fairfax',                    meta:'Wings / Fast Casual',               area:'Fairfax',       note:'',                                      price:'$',   active:true},
   // — Falls Church —
   {name:'Chipotle Falls Church',               meta:'Fast Casual Mexican',               area:'Falls Church',  note:'Burrito bowls',                         price:'$',   active:true},
@@ -744,7 +743,7 @@ const ALL = [
   {name:'Panera Bread Leesburg',               meta:'Bakery / Sandwiches',               area:'Leesburg',      note:'',                                      price:'$',   active:true},
   {name:'South Street Under',                  meta:'Cafe / Sandwiches',                 area:'Leesburg',      note:'Hidden cafe, quick pickup',             price:'$',   active:true},
   {name:'Spitz Leesburg',                      meta:'Döner / Mediterranean',             area:'Leesburg',      note:'Village at Leesburg',                   price:'$',   active:true},
-  {name:'Texas Roadhouse Leesburg',            meta:'Steakhouse / Family',               area:'Leesburg',      note:'Rolls & peanuts',                       price:'$$',  active:true},
+  {name:'Texas Roadhouse Leesburg',            meta:'Steakhouse / Family',               area:'Leesburg',      note:'Free rolls, big portions',              price:'$$',  active:true},
   {name:'The Big Greek Cafe',                  meta:'Greek / Fast Casual',               area:'Leesburg',      note:'',                                      price:'$',   active:true},
   // — McLean —
   {name:'Chipotle McLean',                     meta:'Fast Casual Mexican',               area:'McLean',        note:'Burrito bowls',                         price:'$',   active:true},
@@ -799,7 +798,7 @@ const ALL = [
   {name:"Jersey Mike's Winchester",            meta:'Subs / Sandwiches',                 area:'Winchester',    note:'',                                      price:'$',   active:true},
   {name:'Panda Express Winchester',            meta:'Fast Casual Chinese',               area:'Winchester',    note:'',                                      price:'$',   active:true},
   {name:'Panera Bread Winchester',             meta:'Bakery / Sandwiches',               area:'Winchester',    note:'',                                      price:'$',   active:true},
-  {name:'Texas Roadhouse Winchester',          meta:'Steakhouse / Family',               area:'Winchester',    note:'Rolls & peanuts',                       price:'$$',  active:true},
+  {name:'Texas Roadhouse Winchester',          meta:'Steakhouse / Family',               area:'Winchester',    note:'Free rolls, big portions',              price:'$$',  active:true},
   {name:'Wingstop Winchester',                 meta:'Wings / Fast Casual',               area:'Winchester',    note:'',                                      price:'$',   active:true},
 ];
 
@@ -1006,7 +1005,7 @@ function renderList() {
     return `<div class="region"><div class="region-label">${esc(area)}</div>${
       items.map(r => `<label class="rest-item">
         <input type="checkbox" ${r.active ? 'checked' : ''} onchange="toggleOne(${r.idx},this.checked)" />
-        ${esc(r.name)}${r.price ? `<span class="price-tag">${esc(r.price)}</span>` : ''}${r.note && r.note.includes('Peanut') ? '<span class="peanut-tag">peanut oil</span>' : ''}
+        ${esc(r.name)}${r.price ? `<span class="price-tag">${esc(r.price)}</span>` : ''}
         ${r.isCustom ? `<button class="delete-btn" onclick="event.preventDefault();deleteRestaurant(${r.idx})" title="Remove">✕</button>` : ''}
       </label>`).join('')
     }</div>`;
