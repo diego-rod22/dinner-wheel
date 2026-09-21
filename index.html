@@ -20,7 +20,6 @@ body {
 }
 
 h1 { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; text-align: center; }
-.sub { font-size: 12px; color: #888; text-align: center; margin-top: 3px; }
 
 .filter-section { width: 100%; max-width: 420px; }
 .filter-label { font-size: 10px; font-weight: 600; color: #444; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
@@ -157,7 +156,6 @@ canvas { display: block; border-radius: 50%; }
 <body>
 
 <h1>Dinner Night Wheel</h1>
-<p class="sub">Northern Virginia &amp; the Shenandoah Valley</p>
 
 <div class="filter-section">
   <div class="filter-label">Filter by area — tap to toggle multiple</div>
@@ -285,7 +283,7 @@ const ALL = [
   {name:"Chasin' Tails",            meta:'Cajun Seafood',                area:'Falls Church',  note:'',                         price:'$$', active:true},
   {name:'Sweetwater Tavern FC',     meta:'American Brewery',             area:'Falls Church',  note:'',                         price:'$$', active:true},
   {name:'The Falls',                meta:'American',                     area:'Falls Church',  note:'',                         price:'$$', active:true},
-  {name:'Chick-fil-A',              meta:'Fast Food Chicken',            area:'Falls Church',  note:'',                        price:'$', active:true},
+  {name:'Chick-fil-A Falls Church', meta:'Fast Food Chicken',            area:'Falls Church',  note:'',                        price:'$', active:true},
   {name:'Honest Grill',             meta:'Korean BBQ',                   area:'Falls Church',  note:'',                         price:'$', active:true},
   {name:'Taco Bamba',               meta:'Mexican Fusion',               area:'Falls Church',  note:'',                         price:'$', active:true},
   {name:'Peking Gourmet Inn',       meta:'Chinese / Peking Duck ⭐ 4.2', area:'Falls Church',  note:'Legendary duck spot',      price:'$$$', active:true},
@@ -800,6 +798,40 @@ const ALL = [
   {name:'Panera Bread Winchester',             meta:'Bakery / Sandwiches',               area:'Winchester',    note:'',                                      price:'$',   active:true},
   {name:'Texas Roadhouse Winchester',          meta:'Steakhouse / Family',               area:'Winchester',    note:'Free rolls, big portions',              price:'$$',  active:true},
   {name:'Wingstop Winchester',                 meta:'Wings / Fast Casual',               area:'Winchester',    note:'',                                      price:'$',   active:true},
+  // ══ more fast food locations ══
+  {name:'Chick-fil-A Alexandria',              meta:'Fast Food Chicken',                 area:'Alexandria',    note:'',                     price:'$',   active:true},
+  {name:'Chick-fil-A Annandale',               meta:'Fast Food Chicken',                 area:'Annandale',     note:'',                     price:'$',   active:true},
+  {name:'Five Guys Annandale',                 meta:'Burgers / Fries',                   area:'Annandale',     note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Arlington',               meta:'Fast Food Chicken',                 area:'Arlington',     note:'',                     price:'$',   active:true},
+  {name:'Five Guys Arlington',                 meta:'Burgers / Fries',                   area:'Arlington',     note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Ashburn',                 meta:'Fast Food Chicken',                 area:'Ashburn',       note:'',                     price:'$',   active:true},
+  {name:'Five Guys Ashburn',                   meta:'Burgers / Fries',                   area:'Ashburn',       note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Centreville',             meta:'Fast Food Chicken',                 area:'Centreville',   note:'',                     price:'$',   active:true},
+  {name:'Five Guys Centreville',               meta:'Burgers / Fries',                   area:'Centreville',   note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Chantilly',               meta:'Fast Food Chicken',                 area:'Chantilly',     note:'',                     price:'$',   active:true},
+  {name:'Five Guys Chantilly',                 meta:'Burgers / Fries',                   area:'Chantilly',     note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Fairfax',                 meta:'Fast Food Chicken',                 area:'Fairfax',       note:'',                     price:'$',   active:true},
+  {name:'Five Guys Fairfax',                   meta:'Burgers / Fries',                   area:'Fairfax',       note:'',              price:'$',   active:true},
+  {name:'Five Guys Falls Church',              meta:'Burgers / Fries',                   area:'Falls Church',  note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Front Royal',             meta:'Fast Food Chicken',                 area:'Front Royal',   note:'',                     price:'$',   active:true},
+  {name:'Five Guys Front Royal',               meta:'Burgers / Fries',                   area:'Front Royal',   note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Herndon',                 meta:'Fast Food Chicken',                 area:'Herndon',       note:'',                     price:'$',   active:true},
+  {name:'Five Guys Herndon',                   meta:'Burgers / Fries',                   area:'Herndon',       note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Leesburg',                meta:'Fast Food Chicken',                 area:'Leesburg',      note:'',                     price:'$',   active:true},
+  {name:'Five Guys Leesburg',                  meta:'Burgers / Fries',                   area:'Leesburg',      note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A McLean',                  meta:'Fast Food Chicken',                 area:'McLean',        note:'',                     price:'$',   active:true},
+  {name:'Five Guys McLean',                    meta:'Burgers / Fries',                   area:'McLean',        note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Oakton',                  meta:'Fast Food Chicken',                 area:'Oakton',        note:'',                     price:'$',   active:true},
+  {name:'Chick-fil-A Purcellville',            meta:'Fast Food Chicken',                 area:'Purcellville',  note:'',                     price:'$',   active:true},
+  {name:'Chick-fil-A Reston',                  meta:'Fast Food Chicken',                 area:'Reston',        note:'',                     price:'$',   active:true},
+  {name:'Five Guys Reston',                    meta:'Burgers / Fries',                   area:'Reston',        note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Springfield',             meta:'Fast Food Chicken',                 area:'Springfield',   note:'',                     price:'$',   active:true},
+  {name:'Five Guys Springfield',               meta:'Burgers / Fries',                   area:'Springfield',   note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Tysons',                  meta:'Fast Food Chicken',                 area:'Tysons',        note:'',                     price:'$',   active:true},
+  {name:'Five Guys Tysons',                    meta:'Burgers / Fries',                   area:'Tysons',        note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Vienna',                  meta:'Fast Food Chicken',                 area:'Vienna',        note:'',                     price:'$',   active:true},
+  {name:'Five Guys Vienna',                    meta:'Burgers / Fries',                   area:'Vienna',        note:'',              price:'$',   active:true},
+  {name:'Chick-fil-A Winchester',              meta:'Fast Food Chicken',                 area:'Winchester',    note:'',                     price:'$',   active:true},
 ];
 
 const AREAS = ['Alexandria','Herndon','Reston','Falls Church','Fairfax','Oakton','Tysons','Arlington','Vienna','McLean','Annandale','Springfield','Chantilly','Centreville','Ashburn','Leesburg','Purcellville','Round Hill','Middleburg','Winchester','Front Royal'];
